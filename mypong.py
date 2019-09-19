@@ -33,6 +33,8 @@ ball.shape("square")
 ball.color("white")
 ball.penup()
 ball.goto(0,0)
+ball.dx = 5
+ball.dy = 5
 
 # mover raquete 1
 def paddle_1_up():
@@ -67,3 +69,6 @@ screen.onkeypress(paddle_2_down,"Down")
 
 while True:
     screen.update()
+
+    ball.setx(ball.xcor() + ball.dx)
+    ball.sety(ball.ycor() + ball.dy)
