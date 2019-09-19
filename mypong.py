@@ -34,6 +34,36 @@ ball.color("white")
 ball.penup()
 ball.goto(0,0)
 
+# mover raquete 1
+def paddle_1_up():
+    y = paddle_1.ycor()
+    y += 20
+    paddle_1.sety(y)
+
+def paddle_1_down():
+    y = paddle_1.ycor()
+    y -= 20
+    paddle_1.sety(y)
+
+def paddle_2_up():
+    y = paddle_2.ycor()
+    y += 20
+    paddle_2.sety(y)
+
+def paddle_2_down():
+    y = paddle_2.ycor()
+    y -= 20
+    paddle_2.sety(y)
+
+# mapeando as teclas
+screen.listen()
+screen.onkeypress(paddle_1_up,"w")
+screen.onkeypress(paddle_1_down,"s")
+screen.onkeypress(paddle_2_up,"Up")
+screen.onkeypress(paddle_2_down,"Down")
+
+
+
 
 while True:
     screen.update()
