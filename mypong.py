@@ -33,8 +33,8 @@ ball.shape("square")
 ball.color("white")
 ball.penup()
 ball.goto(0,0)
-ball.dx = -2
-ball.dy = -2
+ball.dx = 4
+ball.dy = 4
 
 score_1 = 0
 score_2 = 0
@@ -85,11 +85,13 @@ while True:
 
     #colisão com parede superior
     if ball.ycor() > 290:
+        os.system("afplay bounce.wav&")
         ball.sety(290)
         ball.dy *= -1
     
     #colisão com parede inferior
     if ball.ycor() < -290:
+        os.system("afplay bounce.wav&")
         ball.sety(-290)
         ball.dy *= -1
 
@@ -109,9 +111,12 @@ while True:
         ball.goto(0,0)
         ball.dx *= -1
 
+
     # colisão raquetes
     if ball.xcor() < -340 and ball.ycor() < paddle_1.ycor() + 50 and ball.ycor() > paddle_1.ycor() - 50:
-        ball.dx *= -1        
+        ball.dx *= -1     
+        os.system("afplay bounce.wav&")   
     
     if ball.xcor() > 340 and ball.ycor() < paddle_2.ycor() + 50 and ball.ycor() > paddle_2.ycor() - 50:
         ball.dx *= -1
+        os.system("afplay bounce.wav&")
