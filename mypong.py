@@ -36,6 +36,18 @@ ball.goto(0,0)
 ball.dx = -2
 ball.dy = -2
 
+score_1 = 0
+score_2 = 0
+
+hud = turtle.Turtle()
+hud.speed(0)
+hud.shape("square")
+hud.color("white")
+hud.penup()
+hud.hideturtle()
+hud.goto(0, 260)
+hud.write("0 : 0", align="center", font=("Press Start 2P",24,"normal") )
+
 # mover raquete 1
 def paddle_1_up():
     y = paddle_1.ycor()
@@ -83,10 +95,23 @@ while True:
 
     #colisão com parede esquerda
     if ball.xcor() < -390:
+        score_2 += 1
+        hud.clear()
+        hud.write("{} : {}".format(score_1, score_2), align="center", font=("Press Start 2P",24,"normal") )
         ball.goto(0,0)
         ball.dx *= -1
     
     #colisão com parede direita
     if ball.xcor() > 390:
+        score_1 += 1
+        hud.clear()
+        hud.write("{} : {}".format(score_1, score_2), align="center", font=("Press Start 2P",24,"normal") )
         ball.goto(0,0)
+        ball.dx *= -1
+
+    # colisão raquetes
+    if ball.xcor() < -340 and ball.ycor() < paddle_1.ycor() + 50 and ball.ycor() > paddle_1.ycor() - 50:
+        ball.dx *= -1        
+    
+    if ball.xcor() > 340 and ball.ycor() < paddle_2.ycor() + 50 and ball.ycor() > paddle_2.ycor() - 50:
         ball.dx *= -1
