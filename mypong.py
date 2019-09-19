@@ -33,8 +33,8 @@ ball.shape("square")
 ball.color("white")
 ball.penup()
 ball.goto(0,0)
-ball.dx = 5
-ball.dy = 5
+ball.dx = -2
+ball.dy = -2
 
 # mover raquete 1
 def paddle_1_up():
@@ -64,11 +64,29 @@ screen.onkeypress(paddle_1_down,"s")
 screen.onkeypress(paddle_2_up,"Up")
 screen.onkeypress(paddle_2_down,"Down")
 
-
-
-
 while True:
     screen.update()
 
+    # movimentação da bola
     ball.setx(ball.xcor() + ball.dx)
     ball.sety(ball.ycor() + ball.dy)
+
+    #colisão com parede superior
+    if ball.ycor() > 290:
+        ball.sety(290)
+        ball.dy *= -1
+    
+    #colisão com parede inferior
+    if ball.ycor() < -290:
+        ball.sety(-290)
+        ball.dy *= -1
+
+    #colisão com parede esquerda
+    if ball.xcor() < -390:
+        ball.goto(0,0)
+        ball.dx *= -1
+    
+    #colisão com parede direita
+    if ball.xcor() > 390:
+        ball.goto(0,0)
+        ball.dx *= -1
